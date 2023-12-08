@@ -8,11 +8,13 @@ from django.contrib import messages
 from functools import wraps
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-# import pdfMake
-
-
+# from django.contrib.auth.forms import PasswordChangeForm
+# from django.contrib.auth import update_session_auth_hash
+from django.http import HttpResponseForbidden
+# from .form_signup import AdminSignUpForm
 
 # Create your views here.   
+
 def login_required():
     def decorator(view_func):
         @wraps(view_func)
@@ -373,9 +375,23 @@ def home(request):
 @login_required()
 def contact(request):
     return render(request, 'contact.html')
-@login_required()
-def mark_all_as_read(request):
-    unread_notifications = Notification.objects.filter(user=request.user, read=False)
-    unread_notifications.update(read=True)
+# @login_required()
+# def mark_all_as_read(request):
+#     unread_notifications = Notification.objects.filter(user=request.user, read=False)
+#     unread_notifications.update(read=True)
     
-    return redirect(request.META.get('HTTP_REFERER', '/'))  # Ganti dengan URL menu notifikasi Anda
+#     return redirect(request.META.get('HTTP_REFERER', '/'))  # Ganti dengan URL menu notifikasi Anda
+
+
+# @login_required()
+# def ubah_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             update_session_auth_hash(request, user)  # Update the session after password change
+#             messages.success(request, 'Password berhasil diubah.')
+#             return redirect('profil')
+#     else:
+#         form = PasswordChangeForm(request.user)
+#     return render(request, 'ubah_password.html', {'form': form})

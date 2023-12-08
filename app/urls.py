@@ -7,11 +7,14 @@ from .views import index_task,tambah_task,post_task,update_task,post_update_task
 # from .views import change_password
 
 urlpatterns = [
+    # path('ubah-password/', ubah_password, name='ubah_password'),
+
     path('home', home, name='home'),
     path('contact', contact, name='contact'),
 
 
     path('', LoginPage, name='LoginPage'),
+    # path('admin/signup', admin_signup, name='admin_signup'),
     path('login_post', login_post, name='loginPost'),
     path('logout', logout, name='logout'),
     path('index',index, name='index'),
